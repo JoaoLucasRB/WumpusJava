@@ -1,0 +1,19 @@
+package projetowumpus;
+
+import projetowumpus.ambiente.ambienteVisivel;
+
+public class ProjetoWumpus {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        ambienteVisivel chamadaVisivel = new ambienteVisivel();
+        System.out.println("L - Livre; P - Poço; W - Wumpus; T - Tesouro; M - Wumpus + Poço; V - Wumpus + Tesouro");
+        for(int x=0; x<4; x++){           
+                System.out.println(chamadaVisivel.getMatrizVisivel(x, 0) + "  " + chamadaVisivel.getMatrizVisivel(x, 1) + "  " + chamadaVisivel.getMatrizVisivel(x, 2) + "  " + chamadaVisivel.getMatrizVisivel(x, 3));
+        }
+        
+    }
+    
+}
