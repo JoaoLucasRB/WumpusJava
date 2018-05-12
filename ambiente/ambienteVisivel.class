@@ -36,12 +36,8 @@ public class ambienteVisivel {
         do{
            xA = aleatorio.nextInt(4);
            yA = aleatorio.nextInt(4); 
-        }while((xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) );
-        if(matrizVisivel[xA][yA] == 'P'){   //se houver poço no ponto escolhido
-            matrizVisivel[xA][yA] = 'M';    // M - Wumpus + Poço
-        }else{
-            matrizVisivel[xA][yA] = 'W';    // W - Wumpus
-        }
+        }while((xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) || (matrizVisivel[xA][yA] == 'P') );
+           matrizVisivel[xA][yA] = 'W';    // W - Wumpus
     }
     
     private void gerarTesouro(){     //Gerar tesouro no ambiente
@@ -49,12 +45,9 @@ public class ambienteVisivel {
         do{
             xA = aleatorio.nextInt(4);
             yA = aleatorio.nextInt(4); 
-        }while( (xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) || (matrizVisivel[xA][yA] == 'P') || matrizVisivel[xA][yA] == 'M');
-        if(matrizVisivel[xA][yA] == 'W'){   //se houver wumpus no ponto escolhido
-            matrizVisivel[xA][yA] = 'V';    // V - Wumpus + Tesouro
-        }else{
+        }while( (xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) || (matrizVisivel[xA][yA] == 'P') || matrizVisivel[xA][yA] == 'W');
             matrizVisivel[xA][yA] = 'T';    // T - Tesouro
-        }
+        
     }
     
     public char getMatrizVisivel(int x, int y){
