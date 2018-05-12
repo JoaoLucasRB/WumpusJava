@@ -1,0 +1,155 @@
+package projetowumpus.ambiente;
+
+import java.util.Arrays;
+
+public class ambienteSensacao {
+
+    boolean[][][] matrizSensacao;
+    boolean[] sensacoes = {false, false, false};  // {brisa, fedor, resplendor};
+    ambienteVisivel ambienteVisivel;
+
+    public ambienteSensacao(ambienteVisivel aV) {
+        matrizSensacao = new boolean[4][4][];
+        this.ambienteVisivel = aV;
+        this.gerarMatrizSensacao();
+        System.out.println(Arrays.deepToString(matrizSensacao));
+        this.gerarSensacaoPoco();
+        this.gerarSensacaoWumpus();
+        this.gerarSensacaoTesouro();
+        System.out.println(Arrays.deepToString(matrizSensacao));
+    }
+
+    private void gerarMatrizSensacao() {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                matrizSensacao = new boolean[][][]{
+                    { {false,false,false}, {false,false,false}, {false,false,false}, {false,false,false} },
+                    { {false,false,false}, {false,false,false}, {false,false,false}, {false,false,false} },
+                    { {false,false,false}, {false,false,false}, {false,false,false}, {false,false,false} },
+                    { {false,false,false}, {false,false,false}, {false,false,false}, {false,false,false} },
+                };   
+            }
+        }
+    }
+
+    private void gerarSensacaoPoco() {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (ambienteVisivel.getMatrizVisivel(x, y) == 'P') {
+                    if (((x == 0) && (y == 3))) {
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                    } else if (((x == 3) && (y == 3))) {
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                    } else if (((x == 3) && (y == 0))) {
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    } else if (x == 0) {
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    } else if (x == 3) {
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    } else if (y == 0) {
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                        matrizSensacao[x-1][y][0] = true;
+                    } else if (y == 3) {
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x-1][y][0] = true;
+                    }else{
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    }
+                }
+            }
+        }
+    }
+    
+    private void gerarSensacaoWumpus() {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (ambienteVisivel.getMatrizVisivel(x, y) == 'W') {
+                    if (((x == 0) && (y == 3))) {
+                        matrizSensacao[x+1][y][1] = true;
+                        matrizSensacao[x][y-1][1] = true;
+                    } else if (((x == 3) && (y == 3))) {
+                        matrizSensacao[x-1][y][1] = true;
+                        matrizSensacao[x][y-1][1] = true;
+                    } else if (((x == 3) && (y == 0))) {
+                        matrizSensacao[x-1][y][1] = true;
+                        matrizSensacao[x][y+1][1] = true;
+                    } else if (x == 0) {
+                        matrizSensacao[x+1][y][1] = true;
+                        matrizSensacao[x][y-1][1] = true;
+                        matrizSensacao[x][y+1][1] = true;
+                    } else if (x == 3) {
+                        matrizSensacao[x-1][y][1] = true;
+                        matrizSensacao[x][y-1][1] = true;
+                        matrizSensacao[x][y+1][1] = true;
+                    } else if (y == 0) {
+                        matrizSensacao[x+1][y][1] = true;
+                        matrizSensacao[x][y+1][1] = true;
+                        matrizSensacao[x-1][y][1] = true;
+                    } else if (y == 3) {
+                        matrizSensacao[x+1][y][1] = true;
+                        matrizSensacao[x][y-1][1] = true;
+                        matrizSensacao[x-1][y][1] = true;
+                    }else{
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    }
+                }
+            }
+        }
+    }
+    
+    private void gerarSensacaoTesouro() {
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 4; y++) {
+                if (ambienteVisivel.getMatrizVisivel(x, y) == 'T') {
+                    if (((x == 0) && (y == 3))) {
+                        matrizSensacao[x+1][y][2] = true;
+                        matrizSensacao[x][y-1][2] = true;
+                    } else if (((x == 3) && (y == 3))) {
+                        matrizSensacao[x-1][y][2] = true;
+                        matrizSensacao[x][y-1][2] = true;
+                    } else if (((x == 3) && (y == 0))) {
+                        matrizSensacao[x-1][y][2] = true;
+                        matrizSensacao[x][y+1][2] = true;
+                    } else if (x == 0) {
+                        matrizSensacao[x+1][y][2] = true;
+                        matrizSensacao[x][y-1][2] = true;
+                        matrizSensacao[x][y+1][2] = true;
+                    } else if (x == 3) {
+                        matrizSensacao[x-1][y][2] = true;
+                        matrizSensacao[x][y-1][2] = true;
+                        matrizSensacao[x][y+1][2] = true;
+                    } else if (y == 0) {
+                        matrizSensacao[x+1][y][2] = true;
+                        matrizSensacao[x][y+1][2] = true;
+                        matrizSensacao[x-1][y][2] = true;
+                    } else if (y == 3) {
+                        matrizSensacao[x+1][y][2] = true;
+                        matrizSensacao[x][y-1][2] = true;
+                        matrizSensacao[x-1][y][2] = true;
+                    }else{
+                        matrizSensacao[x+1][y][0] = true;
+                        matrizSensacao[x][y-1][0] = true;
+                        matrizSensacao[x-1][y][0] = true;
+                        matrizSensacao[x][y+1][0] = true;
+                    }
+                }
+            }
+        }
+    }
+
+}
