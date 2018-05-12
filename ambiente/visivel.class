@@ -1,0 +1,63 @@
+package projetowumpus.ambiente;
+import java.util.*;
+
+public class ambienteVisivel {
+    private char[][] matrizVisivel;
+    int xA, yA;
+    public ambienteVisivel(){
+       matrizVisivel = new char[4][4];
+       this.gerarAmbientes();
+       this.gerarPocos();
+       this.gerarWumpus();
+       this.gerarTesouro();
+    }
+    
+    private void gerarAmbientes(){   //Gerar os ambientes livres (Sem poço, monstro ou tesouro)
+        for (int x=0; x<4; x++){
+            for(int y=0; y<4; y++){
+                matrizVisivel[x][y] = 'L';
+            }
+        }
+    }
+    
+    private void gerarPocos(){   //Gerar poços no ambiente
+        Random aleatorio = new Random();
+        for (int n=0; n<3; n++){
+            do{
+                xA = aleatorio.nextInt(4);
+                yA = aleatorio.nextInt(4);
+            }while((xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) || (matrizVisivel[xA][yA] == 'P'));
+            matrizVisivel[xA][yA] = 'P';    //P - Poço
+        }
+    }
+    
+    private void gerarWumpus(){  //Gerar Wumpus no ambiente
+        Random aleatorio = new Random();
+        do{
+           xA = aleatorio.nextInt(4);
+           yA = aleatorio.nextInt(4); 
+        }while((xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) );
+        if(matrizVisivel[xA][yA] == 'P'){   //se houver poço no ponto escolhido
+            matrizVisivel[xA][yA] = 'M';    // M - Wumpus + Poço
+        }else{
+            matrizVisivel[xA][yA] = 'W';    // W - Wumpus
+        }
+    }
+    
+    private void gerarTesouro(){     //Gerar tesouro no ambiente
+        Random aleatorio = new Random();
+        do{
+            xA = aleatorio.nextInt(4);
+            yA = aleatorio.nextInt(4); 
+        }while( (xA > 3) || (yA > 3) || ( (xA == 0) && (yA == 0) ) || ( (xA == 0) && (yA == 1) ) || ( (xA == 1) && (yA == 0) ) || (matrizVisivel[xA][yA] == 'P') || matrizVisivel[xA][yA] == 'M');
+        if(matrizVisivel[xA][yA] == 'W'){   //se houver wumpus no ponto escolhido
+            matrizVisivel[xA][yA] = 'V';    // V - Wumpus + Tesouro
+        }else{
+            matrizVisivel[xA][yA] = 'T';    // T - Tesouro
+        }
+    }
+    
+    public char getMatrizVisivel(int x, int y){
+        return matrizVisivel[x][y];
+    }
+}
