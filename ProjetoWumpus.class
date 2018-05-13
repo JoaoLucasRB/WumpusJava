@@ -18,5 +18,5 @@ public class ProjetoWumpus {
         
         ambienteSensacao chamadaSensacao = new ambienteSensacao(chamadaVisivel);
     }
-    
+    teste
 }
