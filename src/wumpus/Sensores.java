@@ -157,7 +157,7 @@ public class Sensores {
                     }
                     //-------------------------------------------------------------------    
                 //PAREDE DA DIREITA QUADRADOS CIMA E BAIXO
-                }else if(y == 3 && x == 2 ){
+                }else if(y == 3 && (x == 2 || x == 1) ){
                     if(matrizVisivel[x-1][y] == 'P' || matrizVisivel[x+1][y] == 'P' || matrizVisivel[x][y-1] == 'P'){
                         matrizSensores[x-1][y].setBrisa();
                         matrizSensores[x][y-1].setBrisa();
@@ -190,7 +190,7 @@ public class Sensores {
                         continue;
                     }//------------------------------------------------------
                 //PAREDE DE CIMA
-                }else if(x == 0 && y == 2){
+                }else if(x == 0 && (y == 2 || y == 1)){
                     matrizSensores[0][2].setParede();
                     if(matrizVisivel[x+1][y] == 'P' || matrizVisivel[x][y+1] == 'P' || matrizVisivel[x][y-1] == 'P'){
                         matrizSensores[x+1][y].setBrisa();
@@ -226,7 +226,7 @@ public class Sensores {
                     }
                     //-----------------------------------------------------------------
                 //PAREDE DA ESQUERDA    
-                }else if(y == 0 && x == 1){
+                }else if(y == 0 && (x == 1 || x == 2)){
                     matrizSensores[1][0].setParede();
                     if(matrizVisivel[x+1][y] == 'P' || matrizVisivel[x-1][y] == 'P' || matrizVisivel[x][y+1]=='P'){
                         matrizSensores[x+1][y].setBrisa();
@@ -258,41 +258,47 @@ public class Sensores {
                         continue;
                     }//--------------------------------------------------
                 }else{
-                    if(matrizVisivel[x][y] == 'P'){
-                        matrizSensores[x+1][y].setBrisa();
-                        matrizSensores[x+1][y].setBrisa();
-                        matrizSensores[x][y+1].setBrisa();
-                        matrizSensores[x][y+1].setBrisa();
-                    }else if(matrizVisivel[x][y] == 'W'){
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                    }else if(matrizVisivel[x][y] == 'T'){
-                        matrizSensores[x+1][y].setOuro();
-                        matrizSensores[x+1][y].setOuro();
-                        matrizSensores[x][y+1].setOuro();
-                        matrizSensores[x][y+1].setOuro();
-                    }else if(matrizVisivel[x][y] == 'M'){
-                        matrizSensores[x+1][y].setBrisa();
-                        matrizSensores[x+1][y].setBrisa();
-                        matrizSensores[x][y+1].setBrisa();
-                        matrizSensores[x][y+1].setBrisa();
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                    }else if(matrizVisivel[x][y] == 'V'){
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x+1][y].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                        matrizSensores[x][y+1].setWumpus();
-                        matrizSensores[x+1][y].setOuro();
-                        matrizSensores[x+1][y].setOuro();
-                        matrizSensores[x][y+1].setOuro();
-                        matrizSensores[x][y+1].setOuro();
-                    }else{
-                        continue;
+                    switch (matrizVisivel[x][y]) {
+                        case 'P':
+                            matrizSensores[x+1][y].setBrisa();
+                            matrizSensores[x+1][y].setBrisa();
+                            matrizSensores[x][y+1].setBrisa();
+                            matrizSensores[x][y+1].setBrisa();
+                            break;
+                        case 'W':
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            break;
+                        case 'T':
+                            matrizSensores[x+1][y].setOuro();
+                            matrizSensores[x+1][y].setOuro();
+                            matrizSensores[x][y+1].setOuro();
+                            matrizSensores[x][y+1].setOuro();
+                            break;
+                        case 'M':
+                            matrizSensores[x+1][y].setBrisa();
+                            matrizSensores[x+1][y].setBrisa();
+                            matrizSensores[x][y+1].setBrisa();
+                            matrizSensores[x][y+1].setBrisa();
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            break;
+                        case 'V':
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x+1][y].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            matrizSensores[x][y+1].setWumpus();
+                            matrizSensores[x+1][y].setOuro();
+                            matrizSensores[x+1][y].setOuro();
+                            matrizSensores[x][y+1].setOuro();
+                            matrizSensores[x][y+1].setOuro();
+                            break;
+                        default:
+                            continue;
                     }
                 }
             }

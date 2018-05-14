@@ -24,7 +24,7 @@ public class Wumpus {
         ambiente.gerarWumpus();
         Sensores sense = new Sensores(ambiente.getMatrizVisivel());
         sense.gerarSubVetores();
-        char a[][] = new char[4][4];
+        System.out.println(ambiente.getMatrizVisivel());
         
         
         
