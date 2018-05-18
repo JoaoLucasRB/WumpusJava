@@ -15,11 +15,22 @@ public class Agente {
     Vetor matrizSenses[][];
     int xPos;
     int yPos;
+    boolean status;
     public Agente(Vetor sensacoes[][]){
         this.matrizSenses = sensacoes;
         this.xPos = 0;
         this.yPos = 0;
         this.sense = consultarSenses(0,0);
+        this.status = true;
+    }
+    void update(){
+        //AÇOES DO BONECO
+        
+        
+        //NAO MUDE
+        if(this.status != true){
+            System.out.println("Perdeu");
+        }
     }
     
     public boolean[] consultarSenses(int x, int y){

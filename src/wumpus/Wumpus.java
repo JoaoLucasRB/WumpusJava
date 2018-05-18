@@ -5,6 +5,8 @@
  */
 package wumpus;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Neto
@@ -24,7 +26,14 @@ public class Wumpus {
         ambiente.gerarWumpus();
         Sensores sense = new Sensores(ambiente.getMatrizVisivel());
         sense.gerarSubVetores();
-        System.out.println(ambiente.getMatrizVisivel());
+        Agente wumpufibco = new Agente(sense.getSensacoes());
+        wumpufibco.moverDireita();
+        
+        while(wumpufibco.status){
+            wumpufibco.update();
+            System.out.println(Arrays.toString(wumpufibco.consultarSenses(wumpufibco.xPos,wumpufibco.yPos)));
+            System.out.println(Arrays.deepToString(ambiente.getMatrizVisivel()));
+        }
         
         
         
