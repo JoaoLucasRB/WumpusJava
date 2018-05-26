@@ -6,6 +6,7 @@
 package wumpus;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Wumpus {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner controle = new Scanner(System.in);
         
         AmbienteVisivel ambiente = new AmbienteVisivel();
         ambiente.gerarAmbientes();
@@ -30,9 +32,24 @@ public class Wumpus {
         wumpufibco.moverDireita();
         
         while(wumpufibco.status){
+            String asdasdasda = controle.nextLine();
             wumpufibco.update();
+            char mobi = ambiente.getPosicao(wumpufibco.xPos, wumpufibco.yPos);
+            
             System.out.println(Arrays.toString(wumpufibco.consultarSenses(wumpufibco.xPos,wumpufibco.yPos)));
             System.out.println(Arrays.deepToString(ambiente.getMatrizVisivel()));
+            System.out.println(wumpufibco.xPos+""+wumpufibco.yPos);
+            
+            if(mobi == 'P' || mobi == 'W' || mobi == 'M') {
+                wumpufibco.matarAgente();
+                System.out.println("Morreu");
+            }else if(mobi == 'V'){
+                System.out.println("Achou o ouro mas morreu :(");
+                wumpufibco.matarAgente();
+            }else if(mobi == 'T'){
+                System.out.println("Ganhou!");
+                wumpufibco.matarAgente();
+            }
         }
         
         
