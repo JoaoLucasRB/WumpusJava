@@ -61,12 +61,13 @@ public class AmbienteVisivel {
         }else{
             matrizVisivel[xA][yA] = 'T';    // T - Tesouro
         }
-    }    
+    }
+    
     public char[][] getMatrizVisivel(){ //PODE MUDAR PARA RETORNAR UMA MATRIZ : public char[][] getMatrizVisivel()
         return matrizVisivel;
     }
-    public char getPosicao(int x,int y){
-        return matrizVisivel[x][y]; 
-    }
     
+    public char getPosicaoVisivel(int x, int y){
+        return matrizVisivel[x][y];
+    }
 }

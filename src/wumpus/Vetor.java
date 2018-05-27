@@ -35,4 +35,8 @@ public class Vetor {
     public void setGrito(){
         this.sensacoes[4] = true;
     }
+    public void setMorteWumpous(){
+        this.sensacoes[1]=false;
+    }
+    
 }

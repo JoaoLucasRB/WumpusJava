@@ -324,4 +324,5 @@ public class Sensores {
     Vetor[][] getSensacoes(){
         return this.matrizSensores;
     }
+    
 }
