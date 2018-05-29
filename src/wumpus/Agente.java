@@ -47,6 +47,9 @@ public class Agente {
     public boolean[] consultarSenses(int x, int y) {
         return matrizSenses[x][y].getSensacoes();
     }
+    public void matarAgente(){
+        this.status = false;
+    }
 
     public void moverBaixo() {
         try {
