@@ -26,6 +26,7 @@ public class Agente {
         this.sense = consultarSenses(0, 0);
         this.status = true;
         this.j = j;
+        matrizConhecimento = new Historico[4][4];
         for (int x = 0; x < 4; x++) {
             for (int y = 0; y < 4; y++) {
                 matrizConhecimento[x][y] = new Historico();

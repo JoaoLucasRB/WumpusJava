@@ -30,14 +30,17 @@ public class Wumpus {
         sense.gerarSubVetores();
         Agente wumpufibco = new Agente(sense.getSensacoes(), ambiente);
         wumpufibco.moverDireita();
-
+        System.out.println("Whiles");
         while (wumpufibco.status) {
+            
             String asdasdasda = controle.nextLine();
             wumpufibco.update();
             char mobi = ambiente.getPosicaoVisivel(wumpufibco.xPos, wumpufibco.yPos);
+            
             System.out.println(Arrays.toString(wumpufibco.consultarSenses(wumpufibco.xPos, wumpufibco.yPos)));
             System.out.println(Arrays.deepToString(ambiente.getMatrizVisivel()));
-            System.out.println(wumpufibco.xPos + "" + wumpufibco.yPos);
+            System.out.println(wumpufibco.xPos + " " + wumpufibco.yPos);
+            
             if (mobi == 'P' || mobi == 'W' || mobi == 'M') {
                 wumpufibco.matarAgente();
                 System.out.println("Morreu");
